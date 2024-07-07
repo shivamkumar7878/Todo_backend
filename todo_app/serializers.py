@@ -1,6 +1,6 @@
 from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
-from .models import User
+from .models import User, ToDo
 from .utils import is_email_unique
 
 class UserSerializer(serializers.ModelSerializer):
@@ -17,8 +17,11 @@ class UserSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data):
-        # create the password hash before savings
         validated_data['password'] = make_password(validated_data['password'])
-
-        # create the client instance
         return super().create(validated_data)
+
+
+class ToDoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ToDo
+        fields = "__all__"

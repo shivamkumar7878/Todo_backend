@@ -3,8 +3,7 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from .models import User
 
-jwt_secret = "thequickbrownfoxjumpsoverthelazydog"
-# jwt_secret = settings.JWT_SECRET_KEY
+jwt_secret = settings.JWT_SECRET_KEY
 
 def generate_jwt_token(user_id):
     payload = {
